@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: TaskSaverPostgreSQL</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: TaskSaverPostgreSQL</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="Saver.html">Saver</a>.</span>
+    
+    TaskSaverPostgreSQL
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="TaskSaverPostgreSQL"><span class="type-signature"></span>new TaskSaverPostgreSQL<span class="signature">(config)</span><span class="type-signature"> &rarr; {<a href="Saver.TaskSaverPostgreSQL.html">Saver.TaskSaverPostgreSQL</a>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Транспорт фиксации задач для PostgreSQL. Создается таблица config.dbTable и в ней фиксируются выполненные задачи
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">параметры инициализации транспорта
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Argument</th>
+		
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>dbTable</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+                <td class="default">
+                
+                    tasks
+                
+                </td>
+            
+            
+            <td class="description last">имя таблицы в БД, куда будут записываться все выполненные апдейты</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>connString</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">строка подключения к БД</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="saver-postgres.js.html">parts/saver/saver-postgres.js</a>, <a href="saver-postgres.js.html#line30">line 30</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type"><a href="Saver.TaskSaverPostgreSQL.html">Saver.TaskSaverPostgreSQL</a></span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li><a href="Saver.TaskSaverAbstract.html">Saver.TaskSaverAbstract</a></li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="DbUpdater.html">DbUpdater</a></li><li><a href="Executor.TaskExecAbstract.html">TaskExecAbstract</a></li><li><a href="Executor.TaskExecPostgresFileJs.html">TaskExecPostgresFileJs</a></li><li><a href="Executor.TaskExecPostgresFileSql.html">TaskExecPostgresFileSql</a></li><li><a href="Reader.TaskReaderAbstract.html">TaskReaderAbstract</a></li><li><a href="Reader.TaskReaderFile.html">TaskReaderFile</a></li><li><a href="Saver.TaskSaverAbstract.html">TaskSaverAbstract</a></li><li><a href="Saver.TaskSaverPostgreSQL.html">TaskSaverPostgreSQL</a></li></ul><h3>Namespaces</h3><ul><li><a href="Executor.html">Executor</a></li><li><a href="Reader.html">Reader</a></li><li><a href="Saver.html">Saver</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu May 21 2015 03:10:53 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

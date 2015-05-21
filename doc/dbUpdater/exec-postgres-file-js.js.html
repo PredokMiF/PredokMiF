@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: parts/executor/exec-postgres-file-js.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: parts/executor/exec-postgres-file-js.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>"use strict";
+
+var util = require('util');
+var pg = require('pg');
+var _ = require('lodash-node');
+
+var debug = require("debug");
+var logDev = debug('dbUpdater:executor:postgresFileJs:dev');
+var logLog = debug('dbUpdater:executor:postgresFileJs:log');
+var logWarn = debug('dbUpdater:executor:postgresFileJs:warn');
+var logErr = debug('dbUpdater:executor:postgresFileJs:err');
+
+var TaskExecAbstract = require('./exec-abstract');
+
+/**
+ * Выполняет JS файлы. Имена файлов должны соовпадать с регуляркой /^.*\.postgres\-file\-js\.js$/ т.е. файл должен заканчиваться на ".postgres-file-js.js"
+ * внутри должен быть валидный NodeJS код. Можно использовать require. Сама задача должна быть оформлена в виде модуля и возвращать функцию с интерфейсом (dbClient, cb)
+ * @example
+ * // Имя файла 20150506-0053-grigorchuk.postgres-file-js.js
+ * var _ = require('lodash-node');
+ * module.exports = function (client, cb) {
+ * var sql = 'CREATE TABLE "myyy" (' +
+ *      '   name character varying(256) NOT NULL, ' +
+ *      '   md5 character varying(128) NOT NULL, ' +
+ *      '   executed timestamp without time zone NOT NULL DEFAULT now()' +
+ *      ');';
+ *      client.query(sql, cb);
+ * };
+ * @param {Object} config - параметры инициализации транспорта
+ * @param {string} config.connString - строка подключения к БД
+ * @returns {Executor.TaskExecPostgresFileJs}
+ * @constructor
+ * @augments Executor.TaskExecAbstract
+ * @memberof Executor
+ */
+function TaskExecPostgresFileJs (config) {
+    var self = this;
+
+    if (self instanceof TaskExecPostgresFileJs === false) {
+        return new TaskExecPostgresFileJs(config);
+    }
+
+    self.config = config || {};
+    logDev('Config %j', self.config);
+}
+
+TaskExecPostgresFileJs.prototype = new TaskExecAbstract();
+
+/**
+ * Определяет принадлежность задачи этому executor'у (по имени задачи, применяя к нему регулярку /^.*\.postgres\-file\-js\.js$/ т.е. файл должен заканчиваться на ".postgres-file-js.js")
+ * @abstract
+ * @param {string} taskName - имя задачи
+ * @returns {boolean} - результат, подходит ли этот формат под задачу (true - значит что этот executor будет выполнять эту задачу, при false продолжится поиск подходящего executor'а)
+ */
+TaskExecPostgresFileJs.prototype.matchType = function (taskName) {
+    var match = !!taskName.match(/^.*\.postgres\-file\-js\.js$/);
+    if (match) {
+        logDev(util.format('Задача %s совпала с executor`ом exec-postgres-file-js', taskName));
+    }
+    return match;
+};
+
+/**
+ * Выполняет файл.
+ * @param {object} toExecuteTask - выполняемая задача
+ * @param {string} toExecuteTask.name - имя выполенной задачи
+ * @param {string} toExecuteTask.md5 - контрольная сумма текста задачи
+ * @param {string} text - текст задачи
+ * @param {function} cb - колбэк выполнения задачи
+ * @param {?Error} cb.err - ошибка выполнения
+ */
+TaskExecPostgresFileJs.prototype.execute = function (toExecuteTask, text, cb) {
+    var self = this,
+        client;
+
+    if (!self.config.connString) {
+        cb(new Error('parametr "connString" is not set at taskSaver_postgresql config'));
+        return;
+    }
+
+    client = new pg.Client(self.config.connString);
+    client.connect(function(err) {
+        if (err) {
+            client.end();
+            cb(err);
+            return;
+        }
+        logDev('DB connected');
+
+        try {
+            logDev('executing js code:\n' + text);
+
+            require(toExecuteTask.fullPath)(client, function (err) {
+                client.end();
+                cb(err);
+            });
+        } catch (e) {
+            client.end();
+            cb(e);
+        }
+    });
+};
+
+module.exports = TaskExecPostgresFileJs;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="DbUpdater.html">DbUpdater</a></li><li><a href="Executor.TaskExecAbstract.html">TaskExecAbstract</a></li><li><a href="Executor.TaskExecPostgresFileJs.html">TaskExecPostgresFileJs</a></li><li><a href="Executor.TaskExecPostgresFileSql.html">TaskExecPostgresFileSql</a></li><li><a href="Reader.TaskReaderAbstract.html">TaskReaderAbstract</a></li><li><a href="Reader.TaskReaderFile.html">TaskReaderFile</a></li><li><a href="Saver.TaskSaverAbstract.html">TaskSaverAbstract</a></li><li><a href="Saver.TaskSaverPostgreSQL.html">TaskSaverPostgreSQL</a></li></ul><h3>Namespaces</h3><ul><li><a href="Executor.html">Executor</a></li><li><a href="Reader.html">Reader</a></li><li><a href="Saver.html">Saver</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu May 21 2015 03:10:53 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
