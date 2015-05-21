@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>JSDoc: Class: TaskExecAbstract</title>
-    
+
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
@@ -16,120 +16,601 @@
 <body>
 
 <div id="main">
-    
+
     <h1 class="page-title">Class: TaskExecAbstract</h1>
+
     
-    
+
 
 
 
 <section>
-    
+
 <header>
-    <h2>
-        <span class="ancestors"><a href="Executor.html">Executor</a>.</span>
     
-    TaskExecAbstract
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Executor.html">Executor</a>.</span>
+        
+        TaskExecAbstract
+        </h2>
+        
     
-</header>  
+</header>
 
 <article>
     <div class="container-overview">
     
-    
-    
         
-<dt>
+
+    
+
     <h4 class="name" id="TaskExecAbstract"><span class="type-signature"></span>new TaskExecAbstract<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Абстрактный шаблон executor'а. Определяет интерфейс основных методов: matchType и execute.Нужно наследоваться от этого класса<br/>MyCoolExecutor.prototype = new TaskExecAbstract();<br/>Так можно создать свой формат для выполнения задач
-    </div>
-    
 
     
-    
-    
-    
-    
-    
-    
+
+
+
+<div class="description">
+    Абстрактный шаблон executor'а. Определяет интерфейс основных методов: matchType и execute.Нужно наследоваться от этого класса<br/>MyCoolExecutor.prototype = new TaskExecAbstract();<br/>Так можно создать свой формат для выполнения задач
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
-    
-        
-    
-    
+
     
 
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="exec-abstract.js.html">parts/executor/exec-abstract.js</a>, <a href="exec-abstract.js.html#line18">line 18</a>
+        <a href="parts_executor_exec-abstract.js.html">parts/executor/exec-abstract.js</a>, <a href="parts_executor_exec-abstract.js.html#line18">line 18</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
-    
-    
 
-    
 
-    
-    
-    
-    
-    
-    
-    
-</dd>
+
+
+
+
+
+
+
+
+
+
+
+
 
     
     </div>
+
     
+
     
+
     
+
+     
+
     
+
     
+
     
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
     
+
+    <h4 class="name" id="execute"><span class="type-signature"></span>execute<span class="signature">(toExecuteTask, text, cb)</span><span class="type-signature"></span></h4>
+
     
+
+
+
+<div class="description">
+    Выполняет задачу
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
     
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
+
+        <tr>
+            
+                <td class="name"><code>toExecuteTask</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">выполняемая задача
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">имя выполенной задачи</td>
+        </tr>
+
     
+
+        <tr>
+            
+                <td class="name"><code>md5</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">контрольная сумма текста задачи</td>
+        </tr>
+
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
     
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">текст задачи</td>
+        </tr>
+
     
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">колбэк выполнения задачи
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
+
+        <tr>
+            
+                <td class="name"><code>err</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">ошибка выполнения</td>
+        </tr>
+
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="parts_executor_exec-abstract.js.html">parts/executor/exec-abstract.js</a>, <a href="parts_executor_exec-abstract.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="matchType"><span class="type-signature">(abstract) </span>matchType<span class="signature">(taskName)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Определяет принадлежность задачи этому executor'у (по имени задачи)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>taskName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">имя задачи</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="parts_executor_exec-abstract.js.html">parts/executor/exec-abstract.js</a>, <a href="parts_executor_exec-abstract.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - результат, подходит ли этот формат под задачу (true - значит что этот executor будет выполнять эту задачу, при false продолжится поиск подходящего executor'а)
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
     
 </article>
 
-</section>  
+</section>
 
 
 
@@ -137,13 +618,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="DbUpdater.html">DbUpdater</a></li><li><a href="Executor.TaskExecAbstract.html">TaskExecAbstract</a></li><li><a href="Executor.TaskExecPostgresFileJs.html">TaskExecPostgresFileJs</a></li><li><a href="Executor.TaskExecPostgresFileSql.html">TaskExecPostgresFileSql</a></li><li><a href="Reader.TaskReaderAbstract.html">TaskReaderAbstract</a></li><li><a href="Reader.TaskReaderFile.html">TaskReaderFile</a></li><li><a href="Saver.TaskSaverAbstract.html">TaskSaverAbstract</a></li><li><a href="Saver.TaskSaverPostgreSQL.html">TaskSaverPostgreSQL</a></li></ul><h3>Namespaces</h3><ul><li><a href="Executor.html">Executor</a></li><li><a href="Reader.html">Reader</a></li><li><a href="Saver.html">Saver</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DbUpdater.html">DbUpdater</a></li><li><a href="Executor.TaskExecAbstract.html">TaskExecAbstract</a></li><li><a href="Executor.TaskExecPostgresFileJs.html">TaskExecPostgresFileJs</a></li><li><a href="Executor.TaskExecPostgresFileSql.html">TaskExecPostgresFileSql</a></li><li><a href="Reader.TaskReaderAbstract.html">TaskReaderAbstract</a></li><li><a href="Reader.TaskReaderFile.html">TaskReaderFile</a></li><li><a href="Saver.TaskSaverAbstract.html">TaskSaverAbstract</a></li><li><a href="Saver.TaskSaverPostgreSQL.html">TaskSaverPostgreSQL</a></li></ul><h3>Namespaces</h3><ul><li><a href="Executor.html">Executor</a></li><li><a href="Reader.html">Reader</a></li><li><a href="Saver.html">Saver</a></li></ul>
 </nav>
 
-<br clear="both">
+<br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu May 21 2015 03:10:53 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Thu May 21 2015 23:44:35 GMT+0300 (Московское время (зима))
 </footer>
 
 <script> prettyPrint(); </script>
