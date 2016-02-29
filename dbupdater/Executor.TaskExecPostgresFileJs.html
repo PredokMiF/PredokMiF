@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: TaskExecPostgresFileSql</title>
+    <title>JSDoc: Class: TaskExecPostgresFileJs</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: TaskExecPostgresFileSql</h1>
+    <h1 class="page-title">Class: TaskExecPostgresFileJs</h1>
 
     
 
@@ -29,10 +29,7 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="Executor.html">Executor</a>.</span>
-        
-        TaskExecPostgresFileSql
-        </h2>
+            <span class="ancestors"><a href="Executor.html">Executor</a>.</span>TaskExecPostgresFileJs</h2>
         
     
 </header>
@@ -44,14 +41,14 @@
 
     
 
-    <h4 class="name" id="TaskExecPostgresFileSql"><span class="type-signature"></span>new TaskExecPostgresFileSql<span class="signature">(config)</span><span class="type-signature"> &rarr; {<a href="Executor.TaskExecPostgresFileSql.html">Executor.TaskExecPostgresFileSql</a>}</span></h4>
+    <h4 class="name" id="TaskExecPostgresFileJs"><span class="type-signature"></span>new TaskExecPostgresFileJs<span class="signature">(config)</span><span class="type-signature"> &rarr; {<a href="Executor.TaskExecPostgresFileJs.html">Executor.TaskExecPostgresFileJs</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Выполняет SQL файлы. Имена файлов должны соовпадать с регуляркой /^.*\.postgres\-file\-sql\.sql$/ т.е. файл должен заканчиваться на ".postgres-file-sql.sql"внутри должен быть валидный SQL код.
+    Выполняет JS файлы. Имена файлов должны соовпадать с регуляркой /^.*\.postgres\-file\-js\.js$/ т.е. файл должен заканчиваться на ".postgres-file-js.js"внутри должен быть валидный NodeJS код. Можно использовать require. Сама задача должна быть оформлена в виде модуля и возвращать функцию с интерфейсом (dbClient, cb)
 </div>
 
 
@@ -193,7 +190,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="parts_executor_exec-postgres-file-sql.js.html">parts/executor/exec-postgres-file-sql.js</a>, <a href="parts_executor_exec-postgres-file-sql.js.html#line29">line 29</a>
+        <a href="parts_executor_exec-postgres-file-js.js.html">parts/executor/exec-postgres-file-js.js</a>, <a href="parts_executor_exec-postgres-file-js.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -227,7 +224,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Executor.TaskExecPostgresFileSql.html">Executor.TaskExecPostgresFileSql</a></span>
+<span class="param-type"><a href="Executor.TaskExecPostgresFileJs.html">Executor.TaskExecPostgresFileJs</a></span>
 
 
     </dd>
@@ -238,7 +235,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// Имя файла 20150520-2359-grigorchuk.postgres-file-sql.sqlALTER TABLE myyy ADD COLUMN id serial NOT NULL;ALTER TABLE myyy ADD PRIMARY KEY (id);</code></pre>
+    <pre class="prettyprint"><code>// Имя файла 20150506-0053-grigorchuk.postgres-file-js.jsvar _ = require('lodash');module.exports = function (client, cb) {var sql = 'CREATE TABLE "myyy" (' +     '   name character varying(256) NOT NULL, ' +     '   md5 character varying(128) NOT NULL, ' +     '   executed timestamp without time zone NOT NULL DEFAULT now()' +     ');';     client.query(sql, cb);};</code></pre>
 
 
 
@@ -283,7 +280,7 @@
 
 
 <div class="description">
-    Выполняет SQL запрос из файла.
+    Выполняет файл.
 </div>
 
 
@@ -560,7 +557,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="parts_executor_exec-postgres-file-sql.js.html">parts/executor/exec-postgres-file-sql.js</a>, <a href="parts_executor_exec-postgres-file-sql.js.html#line65">line 65</a>
+        <a href="parts_executor_exec-postgres-file-js.js.html">parts/executor/exec-postgres-file-js.js</a>, <a href="parts_executor_exec-postgres-file-js.js.html#line72">line 72</a>
     </li></ul></dd>
     
 
@@ -598,7 +595,7 @@
 
 
 <div class="description">
-    Определяет принадлежность задачи этому executor'у (по имени задачи, применяя к нему регулярку /^.*\.postgres\-file\-sql\.sql$/ т.е. файл должен заканчиваться на ".postgres-file-sql.sql")
+    Определяет принадлежность задачи этому executor'у (по имени задачи, применяя к нему регулярку /^.*\.postgres\-file\-js\.js$/ т.е. файл должен заканчиваться на ".postgres-file-js.js")
 </div>
 
 
@@ -696,7 +693,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="parts_executor_exec-postgres-file-sql.js.html">parts/executor/exec-postgres-file-sql.js</a>, <a href="parts_executor_exec-postgres-file-sql.js.html#line48">line 48</a>
+        <a href="parts_executor_exec-postgres-file-js.js.html">parts/executor/exec-postgres-file-js.js</a>, <a href="parts_executor_exec-postgres-file-js.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -766,7 +763,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Fri May 22 2015 23:57:04 GMT+0300 (Московское время (зима))
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Feb 29 2016 13:35:09 GMT+0300 (RTZ 2 (зима))
 </footer>
 
 <script> prettyPrint(); </script>
