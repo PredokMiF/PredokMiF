@@ -1,50 +1,79 @@
 const app = new PIXI.Application({
-    backgroundColor: 0x2980b9
+    antialias: true,
 });
-document.querySelector('#yo').appendChild(app.view);
+const paddingRight = 48
+document.body.style.paddingRight = `${paddingRight}px`
+document.body.appendChild(app.view);
 
-const backImgPath = './01_front.webp'
-const textureImgPath = './01_back.webp'
+const backgroundImage = './01_front.webp'
+const foregroundImage = './01_back.webp'
 
 const radius = 100;
 
 // The blur amount
-const blurSize = 32;
+const blurSize = 20;
 
-PIXI.Assets.add('textureImg', textureImgPath)
-PIXI.Assets.add('backImg', backImgPath)
+PIXI.Assets.add('backgroundImage', backgroundImage)
+PIXI.Assets.add('foregroundImage', foregroundImage)
 
-    //
-PIXI.Assets.load(['textureImg', 'backImg']).then(({ textureImg, backImg }) => {
-    const background = new PIXI.Sprite(textureImg);
-    const testBack = new PIXI.Sprite(backImg);
+PIXI.Assets.load(['backgroundImage', 'foregroundImage']).then(({ backgroundImage, foregroundImage }) => {
+    const background = new PIXI.Sprite(backgroundImage);
+    const foreground = new PIXI.Sprite(foregroundImage);
 
-    app.stage.addChild(testBack);
+    app.renderer.resize(window.innerWidth - paddingRight, window.innerHeight)
+
+    const resize = () => {
+        const ratio = Math.max((window.innerWidth - paddingRight) / backgroundImage.width, window.innerHeight / backgroundImage.height)
+
+        foreground.scale.set(ratio)
+        background.scale.set(ratio)
+
+        app.renderer.resize((window.innerWidth - paddingRight), background.height)
+    }
+
+    resize()
+    window.onresize = resize
+
     app.stage.addChild(background);
-
-    testBack.width = app.screen.width;
-    testBack.height = app.screen.height;
-
-    background.width = app.screen.width;
-    background.height = app.screen.height;
 
     const circle = new PIXI.Graphics()
         .beginFill(0xFF0000)
         .drawCircle(radius + blurSize, radius + blurSize, radius)
         .endFill();
+
     circle.filters = [new PIXI.filters.BlurFilter(blurSize)];
 
     const bounds = new PIXI.Rectangle(0, 0, (radius + blurSize) * 2, (radius + blurSize) * 2);
-    const texture = app.renderer.generateTexture(circle, PIXI.SCALE_MODES.NEAREST, 1, bounds);
+    // const bounds = new PIXI.Circle(100, 100, 300);
+    // const texture = app.renderer.generateTexture(circle, PIXI.SCALE_MODES.NEAREST, 1, bounds);
+    const texture = app.renderer.generateTexture(circle, {
+        scaleMode: PIXI.SCALE_MODES.NEAREST,
+        region: bounds,
+    });
     const focus = new PIXI.Sprite(texture);
 
-    app.stage.addChild(focus);
-    background.mask = focus;
+    function addForeground() {
+        app.stage.addChild(foreground);
+        app.stage.addChild(focus);
+        foreground.mask = focus;
+
+        app.stage.off('pointerdown', addForeground)
+        app.stage.off('mouseenter', addForeground)
+        app.view.style.cursor = 'none'
+    }
+
+    app.stage.on('pointerdown', addForeground)
+    app.stage.on('mouseenter', addForeground)
+
 
     app.stage.interactive = true;
     app.stage.hitArea = app.screen;
-    app.stage.on('pointermove', (event) => {
-        focus.position.x = event.global.x - focus.width;
-        focus.position.y = event.global.y - focus.height;
-    });
+
+    const move = (event) => {
+        focus.position.x = (event.global.x - 50) - focus.width / 2;
+        focus.position.y = (event.global.y - 50) - focus.height / 2;
+    }
+
+    app.stage.on('pointerdown', move);
+    app.stage.on('pointermove', move);
 });

@@ -7,17 +7,75 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        html, body { margin: 0; padding: 0; }
-        #yo { text-align: center; }
-        h1 { font-family: Arial, SansSerif; margin: 20px 0 0 0; padding: 0; text-align: center; }
+        body {
+            background: #444;
+        }
+        .aniWrap {
+            position: fixed;
+            bottom: 10px;
+            right: 12px;
+            width: 28px;
+        }
+
+        .mouse {
+            width: 28px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 14px;
+        }
+
+        .scroller {
+            width: 4px;
+            height: 4px;
+            border-radius: 2px;
+            background: white;
+            position: relative;
+            top: 10px;
+            left: 12px;
+            -webkit-animation: scrolls 1.3s ease-out infinite ; /* Chrome, Safari, Opera */
+        }
+
+
+        @-webkit-keyframes scrolls {
+            0%   {top: 18px; opacity: 1; height: 4px}
+            95% {top: 5px; opacity: 0; height: 8px}
+            100% {top: 18px; opacity: 1; height: 4px}
+        }
+
+        .screenLock {
+            font-size: 7vw;
+            text-align: center;
+            font-weight: 500;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: #ededed;
+            z-index: 1000;
+        }
+
+        @media screen and (orientation: landscape) {
+            .screenLock {
+                visibility: hidden;
+            }
+        }
     </style>
 </head>
-<body>
-
-<div id="yo"></div>
-<h1>
-    Ткни на фото и поводи по нему
-</h1>
+<body style="padding: 0; margin: 0">
+<div class="screenLock">
+    Переверните устройство в горизонтальное положение
+</div>
+<div class="aniWrap">
+    <div class="mouse">
+        <div class="scroller">
+        </div>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.0.5/pixi.min.js"></script>
 <script src="./index.js"></script>
