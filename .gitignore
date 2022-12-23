@@ -1,0 +1,15 @@
+# Windows
+Thumbs.db
+
+# Intellij Idea
+.idea
+*.iml
+*.iws
+*.ipr
+temp
+
+# Git merge
+*.orig
+
+#MacOs
+*.DS_Store*
