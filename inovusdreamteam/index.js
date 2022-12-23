@@ -44,7 +44,7 @@ PIXI.Assets.load(['textureImg', 'backImg']).then(({ textureImg, backImg }) => {
     app.stage.interactive = true;
     app.stage.hitArea = app.screen;
     app.stage.on('pointermove', (event) => {
-        focus.position.x = event.global.x - focus.width / 2;
-        focus.position.y = event.global.y - focus.height / 2;
+        focus.position.x = event.global.x - focus.width;
+        focus.position.y = event.global.y - focus.height;
     });
 });
