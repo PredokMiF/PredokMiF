@@ -5,6 +5,10 @@ const paddingRight = 48
 document.body.style.paddingRight = `${paddingRight}px`
 document.body.appendChild(app.view);
 
+const h1 = document.createElement('h1');
+h1.innerText = 'Ткни на фото и поводи по нему';
+document.body.appendChild(h1);
+
 const backgroundImage = './01_front.webp'
 const foregroundImage = './01_back.webp'
 
